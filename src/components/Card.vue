@@ -83,7 +83,7 @@ export default {
 
 
  <template>
- <div class="cardDicv mt-20" >
+ <div class="cardDicv mt-20 mb-40 pb-40" >
     <div v-for="job in filteredSearch" :key="job.id" class="container mx-auto h-40 w-9/12 rounded-md bg-300 flex flex-row shadow-xl bg-my-white mt-5">
             <div class="bg-my-cyan w-1.5 rounded-l-md" v-if="job.featured"></div>
             <div class="basis-1/2 my-auto flex flex-row">
