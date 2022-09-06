@@ -1,26 +1,45 @@
 <script >
 import jobData from "/data.json"
 import { searchVar } from '/store.js'
+import { showBox } from '/store.js'
 export default {
   data() {
     return {
       jobs: jobData,
-      searchVar
+      searchVar,
+      showBox
       
     };
   },
   methods:{
       roleFunc(e){
+          if(!this.searchVar.role){
+              this.showBox.count++
+          }
           this.searchVar.role = e
       },
       levelFunc(e){
+          if(!this.searchVar.level){
+              this.showBox.count++
+          }
           this.searchVar.level = e
+          
       },
       langFunc(e){
-          this.searchVar.lang.push(e)
+          let hasAlready = this.searchVar.lang.includes(e)
+          if(!hasAlready){
+              this.searchVar.lang.push(e)
+              this.showBox.count++
+          }
+          
       },
       toolFunc(e){
-          this.searchVar.tool.push(e)
+          let hasAlready = this.searchVar.tool.includes(e)
+          if(!hasAlready){
+              this.searchVar.tool.push(e)
+              this.showBox.count++
+          }
+          
       }
   },
   computed:{

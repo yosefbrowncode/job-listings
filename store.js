@@ -6,3 +6,7 @@ export const searchVar = reactive({
   tool: [],
   level: "",
 });
+
+export const showBox = reactive({
+  count: 0,
+});
