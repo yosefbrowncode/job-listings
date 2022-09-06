@@ -14,11 +14,12 @@ export default {
         searchVar.level = ""
     },
     langDelete(e){
-      searchVar.lang.splice(e)
+      searchVar.lang.splice(e,1)
+      console.log(e)
       console.log(searchVar.lang)
     },
     toolDelete(e){
-      searchVar.tool.splice(e)
+      searchVar.tool.splice(e,1)
     }
   },
 }
