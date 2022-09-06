@@ -17,6 +17,7 @@ import Card from './components/Card.vue'
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: hsl(180, 52%, 96%);
+  height: 100vh;
  
 }
 </style>
