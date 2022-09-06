@@ -1,12 +1,62 @@
 <script >
 import jobData from "/data.json"
+import { searchVar } from '/store.js'
 export default {
   data() {
     return {
       jobs: jobData,
+      searchVar
+      
     };
   },
-};
+  methods:{
+      roleFunc(e){
+          this.searchVar.role = e
+      },
+      levelFunc(e){
+          this.searchVar.level = e
+      },
+      langFunc(e){
+          this.searchVar.lang.push(e)
+      },
+      toolFunc(e){
+          this.searchVar.tool.push(e)
+      }
+  },
+  computed:{
+      filteredSearch() {
+    let jobsNew = this.jobs
+    
+      if (this.searchVar.role)
+      jobsNew = jobsNew.filter((item) => {
+        return (item.role.includes(this.searchVar.role))
+      })
+
+      if (this.searchVar.level)
+      jobsNew = jobsNew.filter((item) => {
+        return (item.level.includes(this.searchVar.level))
+      })
+
+      if (this.searchVar.lang.length > 0)
+        for(let i = 0; i < this.searchVar.lang.length; i++){
+            jobsNew = jobsNew.filter((item) => {
+                return (item.languages.includes(this.searchVar.lang[i]))
+            })
+              }
+
+      if (this.searchVar.tool.length > 0)
+        for(let i = 0; i < this.searchVar.tool.length; i++){
+             jobsNew = jobsNew.filter((item) => {
+            return (item.tools.includes(this.searchVar.tool[i]))
+        })
+        }
+       
+
+      return jobsNew
+}
+  
+}
+}
 
 </script>
 
@@ -14,8 +64,8 @@ export default {
 
 
  <template>
- <div class="cardDicv" v-for="job in jobs" :key="job.id">
-    <div class="container mx-auto h-40 w-9/12 rounded-md bg-300 flex flex-row shadow-xl bg-my-white mt-5">
+ <div class="cardDicv mt-20" >
+    <div v-for="job in filteredSearch" :key="job.id" class="container mx-auto h-40 w-9/12 rounded-md bg-300 flex flex-row shadow-xl bg-my-white mt-5">
             <div class="bg-my-cyan w-1.5 rounded-l-md" v-if="job.featured"></div>
             <div class="basis-1/2 my-auto flex flex-row">
             <img class="w-24 h-124 align-middle  ml-9 rounded-full" :src="job.logo" alt="">
@@ -43,22 +93,15 @@ export default {
             </div>
 
             <div class="basis-1/2 flex space-x-4 my-auto justify-end mr-10">
-                <div class="position bg-tag-color p-2 rounded-md">
-                    <p class="text-my-cyan  font-semibold text-sm cardFont">{{job.role}}</p>
-                </div>
-                <div class="level bg-tag-color p-2 rounded-md">
-                    <p class="text-my-cyan  font-semibold text-sm cardFont">{{job.level}}</p>
-                </div>
-                <div v-for="lang in job.languages">
-                    <div class="languages bg-tag-color p-2 rounded-md">
-                    <p class="text-my-cyan  font-semibold text-sm cardFont">{{lang}}</p>
-                    </div>
-                </div>
-                <div v-for="tool in job.tools">
-                    <div class="languages bg-tag-color p-2 rounded-md">
-                    <p class="text-my-cyan  font-semibold text-sm cardFont">{{tool}}</p>
-                    </div>
-                </div>
+         
+                <p class=" bg-tag-color p-2 rounded-md text-my-cyan  font-semibold text-sm cardFont hover:bg-my-cyan   hover:text-my-white cursor-pointer" @click="roleFunc(job.role)">{{job.role}}</p>
+                <p class="level bg-tag-color p-2 rounded-md text-my-cyan  font-semibold text-sm cardFont hover:bg-my-cyan   hover:text-my-white cursor-pointer" @click="levelFunc(job.level)">{{job.level}}</p>
+                <template v-for="lang in job.languages">
+                    <p class="languages bg-tag-color p-2 rounded-md text-my-cyan  font-semibold text-sm cardFont hover:bg-my-cyan   hover:text-my-white cursor-pointer" @click="langFunc(lang)">{{lang}}</p>
+                </template>
+                <template v-for="tool in job.tools">
+                    <p class="languages bg-tag-color p-2 rounded-md text-my-cyan  font-semibold text-sm cardFont hover:bg-my-cyan   hover:text-my-white cursor-pointer" @click="toolFunc(tool)">{{tool}}</p>
+                </template>
             </div>
     </div>
  </div>
