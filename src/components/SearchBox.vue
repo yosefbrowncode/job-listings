@@ -53,7 +53,7 @@ export default {
         </template>
       </div>  
       <div class="basis-1/4 flex md:space-x-4 my-auto justify-end mr-5 md:mr-10">
-      <p class="font-semibold text-sm  cursor-pointer text-my-cyan hover:underline  hover:underline-offset-4 mt-4 " @click="clearAll">Clear</p>
+      <p class="font-semibold text-sm  cursor-pointer text-light-tag hover:text-my-cyan hover:underline  hover:underline-offset-4 mt-4 " @click="clearAll">Clear</p>
       </div>
     </div>
   </Transition>
