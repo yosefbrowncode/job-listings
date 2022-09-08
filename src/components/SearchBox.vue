@@ -41,7 +41,7 @@ export default {
 
 <template>
   <Transition>
-    <div v-show="showBox.count > 0" class="static -mt-24 xs:top-20 md:top-24 inset-x-0 container mx-auto pb-4   h-fit  w-11/12 sm:w-9/12 rounded-md bg-300 flex flex-row shadow-xl bg-my-white mt-5">
+    <div v-show="showBox.count > 0" class="static -mt-24 sm:my-auto       sm:absolute  sm:top-28  inset-x-0 container mx-auto pb-4   h-fit  w-11/12 sm:w-9/12 rounded-md bg-300 flex flex-row shadow-xl bg-my-white mt-5">
       <div class="basis-3/4 flex flex-wrap md:space-x-4 my-auto justify-start ml-2 md:ml-10">
         <p v-if='searchVar.role' class=" bg-tag-color rounded-md text-my-cyan h-8   font-semibold text-sm cardFont flex mt-4  cursor-pointer mr-2" @click="roleDelete"><span class="my-auto px-2">{{searchVar.role}}</span><span class="h-100 w-8 bg-my-cyan rounded-r-md hover:bg-dark-tag"><img src="../assets/images/icon-remove.svg" class="mx-auto my-2"></span></p>
         <p v-if='searchVar.level' class=" bg-tag-color rounded-md text-my-cyan h-8   font-semibold text-sm cardFont flex mt-4   cursor-pointer mr-2" @click="levelDelete"><span class="my-auto px-2">{{searchVar.level}}</span><span class="h-100 w-8 bg-my-cyan rounded-r-md hover:bg-dark-tag"><img src="../assets/images/icon-remove.svg" class="mx-auto my-2"></span></p>
@@ -65,14 +65,26 @@ export default {
     font-family: 'League Spartan', sans-serif;
    
 }
-.v-enter-active,
+ .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
-}
+} 
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+} 
+
+@media screen and (max-width: 640px) {
+ 
+.v-leave-active {
+  transition: none;
+} 
+
+
+.v-leave-to {
+  opacity: 0;
+} 
 }
 
 </style>
