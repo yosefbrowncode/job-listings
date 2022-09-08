@@ -83,7 +83,7 @@ export default {
 
 
  <template>
- <div class="cardDicv mt-40 md:mt-20 mb-40 pb-40" >
+ <div class="cardDicv mt-20 md:mt-20 mb-40 pb-40" >
     <div v-for="job in filteredSearch" :key="job.id" :class="{ ' border-my-cyan border-l-4 xl:border-l-0 ' : job.featured }" class="container mx-auto h-72 sm:h-60 xl:h-40 w-11/12 sm:w-9/12 rounded-md bg-300 flex flex-col xl:flex-row shadow-xl bg-my-white mt-14 sm:mt-5">
             <div class="bg-my-cyan w-1.5 h-100 rounded-l-md flex   " v-if="job.featured"></div>
                 <div class="xl:basis-1/2 mt-10 sm:mt-7  xl:my-auto relative flex ml-5 mr-5 xs:ml-10 xs:mr-10  xl:ml-0  border-stone-300  border-b xl:border-0 pb-7 xl:pb-0">
